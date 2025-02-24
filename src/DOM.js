@@ -10,7 +10,16 @@ const DOM = (() => {
         });
     }
 
-    return { renderProjects };
+    // TEST START
+    function renderUI() {
+        const body = document.querySelector("body");
+        const testMessage = document.createElement("div");
+        testMessage.textContent = "This is a test message in a function!";
+        body.appendChild(testMessage);
+    }
+    // TEST END
+
+    return { renderProjects, renderUI };
 })();
 
 export default DOM;

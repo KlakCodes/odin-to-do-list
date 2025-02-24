@@ -1,0 +1,35 @@
+/* TEST START */
+.header {
+    background-color: lightblue;
+}
+
+.projects {
+    background-color: lightgreen;
+}
+
+.tasks {
+    background-color: lightgoldenrodyellow;
+}
+
+.footer {
+    background-color: lightcoral;
+}
+
+div {
+    border: 1px dashed red;
+}
+/* TEST END */
+
+.layout {
+    display: grid;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 4fr;
+}
+
+.header {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+.footer {
+    grid-area: 3 / 1 / 4 / 3
+}
