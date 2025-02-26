@@ -1,35 +1,76 @@
 /* TEST START */
-.header {
-    background-color: lightblue;
-}
-
-.projects {
-    background-color: lightgreen;
-}
-
-.tasks {
-    background-color: lightgoldenrodyellow;
-}
-
-.footer {
-    background-color: lightcoral;
-}
-
 div {
     border: 1px dashed red;
 }
 /* TEST END */
 
+html,
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+}
+
 .layout {
     display: grid;
-    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-rows: 60px 1fr 25px;
     grid-template-columns: 1fr 4fr;
+    height: 100vh;
 }
 
 .header {
+    background-color: lightblue;
+
     grid-area: 1 / 1 / 2 / 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-size: 20px;
+}
+
+#newTaskBtn {
+    height: 40px;
+    width: 100px;
+    font-size: 15px;
+}
+
+.sidebar {
+    background-color: lightgreen;
+
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+}
+
+.projects {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#newProjectBtn {
+    height: 45px;
+    font-size: 15px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.tasks {
+    background-color: lightgoldenrodyellow;
+
+    padding: 10px;
 }
 
 .footer {
-    grid-area: 3 / 1 / 4 / 3
+    background-color: lightcoral;
+
+    grid-area: 3 / 1 / 4 / 3;
+    text-align: center;
+    align-content: center;
 }
