@@ -1,6 +1,8 @@
 import app from "./app";
 
 const DOM = (() => {
+    let selectedProj = "";
+
     function renderProjects(projects) {
         const projectContainer = document.querySelector(".projects");
         projectContainer.innerHTML = "";
@@ -10,6 +12,7 @@ const DOM = (() => {
             projectElement.textContent = project.title;
 
             projectElement.addEventListener("click", () => {
+                selectedProj = project;
                 renderTasks(project);
             });
 
@@ -35,11 +38,11 @@ const DOM = (() => {
         testMessage.textContent = "This is a test message in a function!";
         body.appendChild(testMessage);
     }
+    // TEST END
 
     const newProjectBtn = document.querySelector("#newProjectBtn");
     const newProjectTxt = document.querySelector("#newProjectTxt");
     newProjectBtn.addEventListener("click", () => {
-        console.log("New project button clicked!");
 
         const projName = newProjectTxt.value;
         if (projName !== '') {
@@ -49,13 +52,31 @@ const DOM = (() => {
         } else {
             alert("Please enter a project name");
         }
+
     });
 
     const newTaskBtn = document.querySelector("#newTaskBtn");
+    const newTaskDialog = document.querySelector("#newTaskDialog");
     newTaskBtn.addEventListener("click", () => {
-        console.log("New task button clicked!");
+        newTaskDialog.showModal();
     });
-    // TEST END
+
+    const taskForm = document.querySelector("#newTaskForm");
+
+    const submitForm = (e) => {
+        e.preventDefault();
+
+        const taskTitle = document.querySelector("#taskTitle").value;
+        const taskDesc = document.querySelector("#taskDesc").value;
+        const taskDueDate = document.querySelector("#taskDueDate").value;
+        const taskPriority = document.querySelector("#taskPriority").value;
+
+        app.addTask(selectedProj, taskTitle, taskDesc, taskDueDate, taskPriority);
+        renderTasks(selectedProj);
+        newTaskDialog.close();
+    };
+
+    taskForm.addEventListener("submit", submitForm);
 
     return { renderProjects, renderUI };
 })();

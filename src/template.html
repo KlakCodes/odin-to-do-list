@@ -18,6 +18,27 @@
         </div>
         <div class="tasks">Tasks</div>
         <div class="footer">Footer</div>
+
+        <dialog id="newTaskDialog">
+            <form id="newTaskForm">
+                <label for="taskTitle">Title</label>
+                <input type="text" id="taskTitle">
+
+                <label for="taskDesc">Description</label>
+                <input type="text" id="taskDesc">
+
+                <label for="taskDueDate">Due Date</label>
+                <input type="date" id="taskDueDate">
+
+                <label for="taskPriority">Priority</label>
+                <select id="taskPriority">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+                <button id="submitTaskBtn">Add task</button>
+            </form>
+        </dialog>
     </div>
 </body>
 </html>

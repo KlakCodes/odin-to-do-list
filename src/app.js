@@ -1,4 +1,5 @@
 import { Project } from "./project";
+import { Task } from "./task";
 import Storage from "./storage";
 
 const app = (() => {
@@ -23,7 +24,14 @@ const app = (() => {
         return projects;
     }
 
-    return { init, addProject, getProjects };
+    function addTask(project, title, description, dueDate, priority) {
+        const newTask = new Task(title, description, dueDate, priority);
+        project.addTask(newTask);
+
+        console.log(newTask);
+    }
+
+    return { init, addProject, getProjects, addTask };
 })();
 
 export default app;
