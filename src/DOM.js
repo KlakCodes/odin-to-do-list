@@ -1,3 +1,5 @@
+import app from "./app";
+
 const DOM = (() => {
     function renderProjects(projects) {
         const projectContainer = document.querySelector(".projects");
@@ -6,6 +8,11 @@ const DOM = (() => {
         projects.forEach(project => {
             const projectElement = document.createElement("li");
             projectElement.textContent = project.title;
+
+            projectElement.addEventListener("click", () => {
+                renderTasks(project);
+            });
+
             projectContainer.appendChild(projectElement);
         });
     }
@@ -30,8 +37,18 @@ const DOM = (() => {
     }
 
     const newProjectBtn = document.querySelector("#newProjectBtn");
+    const newProjectTxt = document.querySelector("#newProjectTxt");
     newProjectBtn.addEventListener("click", () => {
         console.log("New project button clicked!");
+
+        const projName = newProjectTxt.value;
+        if (projName !== '') {
+            app.addProject(projName);
+            renderProjects(app.getProjects());
+            newProjectTxt.value = '';
+        } else {
+            alert("Please enter a project name");
+        }
     });
 
     const newTaskBtn = document.querySelector("#newTaskBtn");
