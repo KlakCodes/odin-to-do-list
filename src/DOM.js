@@ -26,7 +26,26 @@ const DOM = (() => {
 
         project.tasks.forEach(task => {
             const taskElement = document.createElement("div");
-            taskElement.textContent = task.title;
+            taskElement.classList.toggle("taskCard");
+
+            const taskTitle = document.createElement("div");
+            const taskDesc = document.createElement("div");
+            const taskDueDate = document.createElement("div");
+            const taskPriority = document.createElement("div");
+            const taskCompleted = document.createElement("div");
+
+            taskTitle.textContent = task.title;
+            taskDesc.textContent = task.description;
+            taskDueDate.textContent = task.dueDate;
+            taskPriority.textContent = task.priority;
+            taskCompleted.textContent = task.completed;
+
+            taskElement.appendChild(taskTitle);
+            taskElement.appendChild(taskDesc);
+            taskElement.appendChild(taskDueDate);
+            taskElement.appendChild(taskPriority);
+            taskElement.appendChild(taskCompleted);
+
             taskContainer.appendChild(taskElement);
         });
     }
