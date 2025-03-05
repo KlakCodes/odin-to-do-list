@@ -27,6 +27,7 @@ const app = (() => {
     function addTask(project, title, description, dueDate, priority) {
         const newTask = new Task(title, description, dueDate, priority);
         project.addTask(newTask);
+        Storage.saveProjects(projects);
 
         console.log(newTask);
     }

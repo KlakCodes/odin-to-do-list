@@ -1,7 +1,7 @@
 export class Project {
-    constructor(title) {
+    constructor(title, tasks=[]) {
         this.title = title;
-        this.tasks = [];
+        this.tasks = tasks;
     }
 
     addTask(task) {

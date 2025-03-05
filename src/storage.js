@@ -7,7 +7,7 @@ const Storage = (() => {
   
     function loadProjects() {
       const projects = JSON.parse(localStorage.getItem("projects"));
-      return projects ? projects.map(p => new Project(p.title)) : null;
+      return projects ? projects.map(p => new Project(p.title, p.tasks)) : null;
     }
   
     return { saveProjects, loadProjects };
