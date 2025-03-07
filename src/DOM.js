@@ -28,6 +28,24 @@ const DOM = (() => {
             const taskElement = document.createElement("div");
             taskElement.classList.toggle("taskCard");
 
+            let taskColor = "#fff"
+
+            switch(task.priority) {
+                case "High":
+                    taskColor = "#ff0000";
+                    break;
+                case "Medium":
+                        taskColor = "#ffa500";
+                    break;
+                case "Low":
+                        taskColor = "#ffff00";
+                    break;
+                default:
+                    taskColor = "#fff";
+            }
+
+            taskElement.style.backgroundColor = taskColor;
+
             const taskTitle = document.createElement("div");
             const taskDesc = document.createElement("div");
             const taskDueDate = document.createElement("div");
@@ -41,10 +59,18 @@ const DOM = (() => {
             taskPriority.textContent = task.priority;
             taskCompleted.textContent = task.completed;
 
-            taskCompBtn.textContent = "Complete Task";
+            let taskCompBtnText = "";
+
+            if(task.completed) {
+                taskCompBtnText = "Reopen task";
+            } else {
+                taskCompBtnText = "Task complete";
+            }
+
+            taskCompBtn.textContent = taskCompBtnText;
             taskCompBtn.addEventListener("click", () => {
                 app.toggleCompTask(task);
-                renderTasks(project);
+                renderTasks(selectedProj);
             });
 
             taskElement.appendChild(taskTitle);
@@ -60,10 +86,9 @@ const DOM = (() => {
 
     // TEST START
     function renderUI() {
-        const body = document.querySelector("body");
-        const testMessage = document.createElement("div");
-        testMessage.textContent = "This is a test message in a function!";
-        body.appendChild(testMessage);
+        const footer = document.querySelector(".footer");
+        const year = new Date().getFullYear();
+        footer.textContent = `Copyright © ${year} KlakCodes`;
     }
     // TEST END
 

@@ -4,6 +4,8 @@ body {
     flex-direction: column;
     height: 100%;
     margin: 0;
+    background-color: #e5e5e5;
+    color: white;
 }
 
 .layout {
@@ -14,7 +16,7 @@ body {
 }
 
 .header {
-    background-color: lightblue;
+    background-color: #000000;
 
     grid-area: 1 / 1 / 2 / 3;
     display: flex;
@@ -25,6 +27,10 @@ body {
     font-size: 20px;
 }
 
+button {
+    background-color: #fca311;
+}
+
 #newTaskBtn {
     height: 40px;
     width: 100px;
@@ -32,8 +38,8 @@ body {
 }
 
 .sidebar {
-    background-color: lightgreen;
-
+    background-color: #14213d;
+    grid-area: 2 / 1 / 4 / 2;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -56,8 +62,6 @@ li {
 }
 
 .tasks {
-    background-color: lightgoldenrodyellow;
-
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -66,13 +70,14 @@ li {
 
 .taskCard {
     background-color: white;
+    color: black;
     border-radius: 5px;
 }
 
 .footer {
-    background-color: lightcoral;
-
-    grid-area: 3 / 1 / 4 / 3;
+    grid-area: 3 / 2 / 4 / 3;
     text-align: center;
     align-content: center;
+    color: black;
+    font-size: 14px;
 }
