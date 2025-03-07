@@ -51,13 +51,21 @@ const DOM = (() => {
             const taskDueDate = document.createElement("div");
             const taskPriority = document.createElement("div");
             const taskCompleted = document.createElement("div");
+            const taskEdit = document.createElement("button");
             const taskCompBtn = document.createElement("button");
+            const taskDelete = document.createElement("button");
 
             taskTitle.textContent = task.title;
             taskDesc.textContent = task.description;
             taskDueDate.textContent = task.dueDate;
             taskPriority.textContent = task.priority;
             taskCompleted.textContent = task.completed;
+            taskEdit.textContent = "Edit";
+            taskDelete.textContent = "Delete";
+
+            taskEdit.addEventListener("click", () => {
+                console.log("Edit task:", task);
+            });
 
             let taskCompBtnText = "";
 
@@ -73,24 +81,30 @@ const DOM = (() => {
                 renderTasks(selectedProj);
             });
 
+            taskDelete.addEventListener("click", () => {
+                console.log("Delete task:", task);
+                app.removeTask(selectedProj, task.title);
+                renderTasks(selectedProj);
+            });
+
             taskElement.appendChild(taskTitle);
             taskElement.appendChild(taskDesc);
             taskElement.appendChild(taskDueDate);
             taskElement.appendChild(taskPriority);
             taskElement.appendChild(taskCompleted);
+            taskElement.appendChild(taskEdit);
             taskElement.appendChild(taskCompBtn);
+            taskElement.appendChild(taskDelete);
 
             taskContainer.appendChild(taskElement);
         });
     }
 
-    // TEST START
     function renderUI() {
         const footer = document.querySelector(".footer");
         const year = new Date().getFullYear();
         footer.textContent = `Copyright © ${year} KlakCodes`;
     }
-    // TEST END
 
     const newProjectBtn = document.querySelector("#newProjectBtn");
     const newProjectTxt = document.querySelector("#newProjectTxt");
@@ -118,15 +132,30 @@ const DOM = (() => {
     const submitForm = (e) => {
         e.preventDefault();
 
-        const taskTitle = document.querySelector("#taskTitle").value;
-        const taskDesc = document.querySelector("#taskDesc").value;
-        const taskDueDate = document.querySelector("#taskDueDate").value;
-        const taskPriority = document.querySelector("#taskPriority").value;
+        let taskTitle = document.querySelector("#taskTitle").value;
+        let taskDesc = document.querySelector("#taskDesc").value;
+        let taskDueDate = document.querySelector("#taskDueDate").value;
+        let taskPriority = document.querySelector("#taskPriority").value;
 
         app.addTask(selectedProj, taskTitle, taskDesc, taskDueDate, taskPriority);
         renderTasks(selectedProj);
+
+        resetInputs();
         newTaskDialog.close();
     };
+
+    function resetInputs() {
+        document.querySelector("#taskTitle").value = "";
+        document.querySelector("#taskDesc").value = "";
+        document.querySelector("#taskDueDate").value = "";
+        document.querySelector("#taskPriority").value = "Low";
+    }
+
+    const closeDialogBtn = document.querySelector(".closeDialog");
+    closeDialogBtn.addEventListener("click", () => {
+        resetInputs();
+        newTaskDialog.close();
+    });
 
     taskForm.addEventListener("submit", submitForm);
 

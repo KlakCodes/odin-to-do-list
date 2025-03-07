@@ -32,12 +32,17 @@ const app = (() => {
         console.log(newTask);
     }
 
+    function removeTask(project, title) {
+        project.removeTask(title);
+        Storage.saveProjects(projects);
+    }
+
     function toggleCompTask(task) {
         task.toggleCompleted();
         Storage.saveProjects(projects);
     }
 
-    return { init, addProject, getProjects, addTask, toggleCompTask };
+    return { init, addProject, getProjects, addTask, removeTask, toggleCompTask };
 })();
 
 export default app;
