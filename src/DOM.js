@@ -33,6 +33,7 @@ const DOM = (() => {
             const taskDueDate = document.createElement("div");
             const taskPriority = document.createElement("div");
             const taskCompleted = document.createElement("div");
+            const taskCompBtn = document.createElement("button");
 
             taskTitle.textContent = task.title;
             taskDesc.textContent = task.description;
@@ -40,11 +41,18 @@ const DOM = (() => {
             taskPriority.textContent = task.priority;
             taskCompleted.textContent = task.completed;
 
+            taskCompBtn.textContent = "Complete Task";
+            taskCompBtn.addEventListener("click", () => {
+                app.toggleCompTask(task);
+                renderTasks(project);
+            });
+
             taskElement.appendChild(taskTitle);
             taskElement.appendChild(taskDesc);
             taskElement.appendChild(taskDueDate);
             taskElement.appendChild(taskPriority);
             taskElement.appendChild(taskCompleted);
+            taskElement.appendChild(taskCompBtn);
 
             taskContainer.appendChild(taskElement);
         });

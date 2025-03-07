@@ -32,7 +32,12 @@ const app = (() => {
         console.log(newTask);
     }
 
-    return { init, addProject, getProjects, addTask };
+    function toggleCompTask(task) {
+        task.toggleCompleted();
+        Storage.saveProjects(projects);
+    }
+
+    return { init, addProject, getProjects, addTask, toggleCompTask };
 })();
 
 export default app;
