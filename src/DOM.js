@@ -2,6 +2,8 @@ import app from "./app";
 
 const DOM = (() => {
     let selectedProj = "";
+    let selectedTask = "";
+    const updateTaskDialog = document.querySelector("#updateTaskDialog");
 
     function renderProjects(projects) {
         const projectContainer = document.querySelector(".projects");
@@ -30,15 +32,15 @@ const DOM = (() => {
 
             let taskColor = "#fff"
 
-            switch(task.priority) {
+            switch (task.priority) {
                 case "High":
                     taskColor = "#ff0000";
                     break;
                 case "Medium":
-                        taskColor = "#ffa500";
+                    taskColor = "#ffa500";
                     break;
                 case "Low":
-                        taskColor = "#ffff00";
+                    taskColor = "#ffff00";
                     break;
                 default:
                     taskColor = "#fff";
@@ -64,18 +66,31 @@ const DOM = (() => {
             taskDelete.textContent = "Delete";
 
             taskEdit.addEventListener("click", () => {
-                console.log("Edit task:", task);
+                // TEST START
+                // console.log("Edit task:", task);
+                // task.title = `${task.title} - Edited`;
+                // app.saveProjects();
+                // renderTasks(selectedProj);
+                // TEST END
+
+                updateTaskDialog.showModal();
+
+                document.querySelector("#updateTitle").value = task.title;
+                document.querySelector("#updateDesc").value = task.description;
+                document.querySelector("#updateDueDate").value = task.dueDate;
+                document.querySelector("#updatePriority").value = task.priority;
             });
 
-            let taskCompBtnText = "";
-
-            if(task.completed) {
-                taskCompBtnText = "Reopen task";
+            if (task.completed) {
+                taskCompBtn.textContent = "✔";
+                taskCompBtn.style.backgroundColor = "#b4eeb4";
+                taskCompBtn.style.color = "#008000";
             } else {
-                taskCompBtnText = "Task complete";
+                taskCompBtn.textContent = "✔";
+                taskCompBtn.style.backgroundColor = "#eeeeee";
+                taskCompBtn.style.color = "#c0c0c0";
             }
 
-            taskCompBtn.textContent = taskCompBtnText;
             taskCompBtn.addEventListener("click", () => {
                 app.toggleCompTask(task);
                 renderTasks(selectedProj);
@@ -97,6 +112,10 @@ const DOM = (() => {
             taskElement.appendChild(taskDelete);
 
             taskContainer.appendChild(taskElement);
+
+            taskElement.addEventListener("click", () => {
+                selectedTask = task;
+            });
         });
     }
 
@@ -123,11 +142,13 @@ const DOM = (() => {
 
     const newTaskBtn = document.querySelector("#newTaskBtn");
     const newTaskDialog = document.querySelector("#newTaskDialog");
+
     newTaskBtn.addEventListener("click", () => {
         newTaskDialog.showModal();
     });
 
     const taskForm = document.querySelector("#newTaskForm");
+    const updateForm = document.querySelector("#updateTaskForm");
 
     const submitForm = (e) => {
         e.preventDefault();
@@ -144,6 +165,20 @@ const DOM = (() => {
         newTaskDialog.close();
     };
 
+    const submitUpdateForm = (e) => {
+        e.preventDefault();
+
+        selectedTask.title = document.querySelector("#updateTitle").value;
+        selectedTask.description = document.querySelector("#updateDesc").value;
+        selectedTask.dueDate = document.querySelector("#updateDueDate").value;
+        selectedTask.priority = document.querySelector("#updatePriority").value;
+
+        app.saveProjects();
+        renderTasks(selectedProj);
+
+        updateTaskDialog.close();
+    };
+
     function resetInputs() {
         document.querySelector("#taskTitle").value = "";
         document.querySelector("#taskDesc").value = "";
@@ -151,13 +186,20 @@ const DOM = (() => {
         document.querySelector("#taskPriority").value = "Low";
     }
 
-    const closeDialogBtn = document.querySelector(".closeDialog");
+    const closeDialogBtn = document.querySelector("#closeNewDialog");
     closeDialogBtn.addEventListener("click", () => {
         resetInputs();
         newTaskDialog.close();
     });
 
+    const closeUpdateBtn = document.querySelector("#closeUpdateDialog");
+    closeUpdateBtn.addEventListener("click", () => {
+        resetInputs();
+        updateTaskDialog.close();
+    });
+
     taskForm.addEventListener("submit", submitForm);
+    updateForm.addEventListener("submit", submitUpdateForm);
 
     return { renderProjects, renderUI };
 })();

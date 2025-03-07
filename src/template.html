@@ -20,7 +20,7 @@
         <div class="footer"></div>
 
         <dialog id="newTaskDialog">
-            <button class="closeDialog">Close</button>
+            <button id="closeNewDialog">Close</button>
             <form id="newTaskForm">
                 <label for="taskTitle">Title</label>
                 <input type="text" id="taskTitle">
@@ -38,6 +38,28 @@
                     <option value="High">High</option>
                 </select>
                 <button id="submitTaskBtn">Add task</button>
+            </form>
+        </dialog>
+
+        <dialog id="updateTaskDialog">
+            <button id="closeUpdateDialog">Close</button>
+            <form id="updateTaskForm">
+                <label for="updateTitle">Title</label>
+                <input type="text" id="updateTitle">
+
+                <label for="updateDesc">Description</label>
+                <input type="text" id="updateDesc">
+
+                <label for="updateDueDate">Due Date</label>
+                <input type="date" id="updateDueDate">
+
+                <label for="updatePriority">Priority</label>
+                <select id="updatePriority">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+                <button id="updateTaskBtn">Update task</button>
             </form>
         </dialog>
     </div>

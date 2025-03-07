@@ -12,6 +12,10 @@ const app = (() => {
         console.table(projects);
     }
 
+    function saveProjects() {
+        Storage.saveProjects(projects);
+    }
+
     function addProject(name) {
         const newProject = new Project(name);
         projects.push(newProject);
@@ -42,7 +46,7 @@ const app = (() => {
         Storage.saveProjects(projects);
     }
 
-    return { init, addProject, getProjects, addTask, removeTask, toggleCompTask };
+    return { init, saveProjects, addProject, getProjects, addTask, removeTask, toggleCompTask };
 })();
 
 export default app;
