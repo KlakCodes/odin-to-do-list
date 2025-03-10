@@ -24,6 +24,11 @@ const app = (() => {
         console.log("New project added:", newProject);
     }
 
+    function removeProject(name) {
+        projects = projects.filter(project => project.title !== name);
+        Storage.saveProjects(projects);
+    }
+
     function getProjects() {
         return projects;
     }
@@ -46,7 +51,7 @@ const app = (() => {
         Storage.saveProjects(projects);
     }
 
-    return { init, saveProjects, addProject, getProjects, addTask, removeTask, toggleCompTask };
+    return { init, saveProjects, addProject, removeProject, getProjects, addTask, removeTask, toggleCompTask };
 })();
 
 export default app;

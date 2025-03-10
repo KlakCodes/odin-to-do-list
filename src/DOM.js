@@ -10,14 +10,28 @@ const DOM = (() => {
         projectContainer.innerHTML = "";
 
         projects.forEach(project => {
-            const projectElement = document.createElement("li");
-            projectElement.textContent = project.title;
+            const defaultProj = app.getProjects().find(({ title }) => title === "Default");
 
-            projectElement.addEventListener("click", () => {
+            const projectElement = document.createElement("li");
+            const projectText = document.createElement("div");
+            const projectDelete = document.createElement("button");
+            projectText.textContent = project.title;
+            projectDelete.textContent = "Delete";
+
+            projectText.addEventListener("click", () => {
                 selectedProj = project;
                 renderTasks(project);
             });
 
+            projectDelete.addEventListener("click", () => {
+                console.log("Deleted project:", project);
+                app.removeProject(project.title);
+                renderProjects(app.getProjects());
+                renderTasks(defaultProj);
+            });
+
+            projectElement.appendChild(projectText);
+            projectElement.appendChild(projectDelete);
             projectContainer.appendChild(projectElement);
         });
     }
@@ -51,8 +65,6 @@ const DOM = (() => {
             const taskTitle = document.createElement("div");
             const taskDesc = document.createElement("div");
             const taskDueDate = document.createElement("div");
-            const taskPriority = document.createElement("div");
-            const taskCompleted = document.createElement("div");
             const taskEdit = document.createElement("button");
             const taskCompBtn = document.createElement("button");
             const taskDelete = document.createElement("button");
@@ -60,19 +72,11 @@ const DOM = (() => {
             taskTitle.textContent = task.title;
             taskDesc.textContent = task.description;
             taskDueDate.textContent = task.dueDate;
-            taskPriority.textContent = task.priority;
-            taskCompleted.textContent = task.completed;
             taskEdit.textContent = "Edit";
             taskDelete.textContent = "Delete";
 
             taskEdit.addEventListener("click", () => {
-                // TEST START
-                // console.log("Edit task:", task);
-                // task.title = `${task.title} - Edited`;
-                // app.saveProjects();
-                // renderTasks(selectedProj);
-                // TEST END
-
+                
                 updateTaskDialog.showModal();
 
                 document.querySelector("#updateTitle").value = task.title;
@@ -105,8 +109,6 @@ const DOM = (() => {
             taskElement.appendChild(taskTitle);
             taskElement.appendChild(taskDesc);
             taskElement.appendChild(taskDueDate);
-            taskElement.appendChild(taskPriority);
-            taskElement.appendChild(taskCompleted);
             taskElement.appendChild(taskEdit);
             taskElement.appendChild(taskCompBtn);
             taskElement.appendChild(taskDelete);

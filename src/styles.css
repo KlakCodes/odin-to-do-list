@@ -58,7 +58,13 @@ button {
 }
 
 li {
+    display: flex;
+    flex-direction: row;
     margin-bottom: 10px;
+}
+
+li>div {
+    flex: 1 0;
 }
 
 .tasks {
