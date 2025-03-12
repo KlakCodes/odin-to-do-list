@@ -10,7 +10,7 @@ body {
 
 .layout {
     display: grid;
-    grid-template-rows: 60px 1fr 25px;
+    grid-template-rows: 60px 40px 1fr 25px;
     grid-template-columns: 1fr 4fr;
     height: 100vh;
 }
@@ -39,7 +39,7 @@ button {
 
 .sidebar {
     background-color: #14213d;
-    grid-area: 2 / 1 / 4 / 2;
+    grid-area: 2 / 1 / 5 / 2;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -67,7 +67,17 @@ li>div {
     flex: 1 0;
 }
 
+.taskHeader {
+    grid-area: 2 / 2 / 3 / 3;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: black;
+    font-size: 18px;
+}
+
 .tasks {
+    grid-area: 3 / 2 / 4 / 3;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -81,7 +91,7 @@ li>div {
 }
 
 .footer {
-    grid-area: 3 / 2 / 4 / 3;
+    grid-area: 4 / 2 / 5 / 3;
     text-align: center;
     align-content: center;
     color: black;

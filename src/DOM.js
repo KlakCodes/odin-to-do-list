@@ -10,11 +10,10 @@ const DOM = (() => {
         projectContainer.innerHTML = "";
 
         projects.forEach(project => {
-            const defaultProj = app.getProjects().find(({ title }) => title === "Default");
-
             const projectElement = document.createElement("li");
             const projectText = document.createElement("div");
             const projectDelete = document.createElement("button");
+
             projectText.textContent = project.title;
             projectDelete.textContent = "Delete";
 
@@ -27,16 +26,28 @@ const DOM = (() => {
                 console.log("Deleted project:", project);
                 app.removeProject(project.title);
                 renderProjects(app.getProjects());
-                renderTasks(defaultProj);
+                selectedProj = app.getProjects().find(({ title }) => title === "Default");
+                renderTasks(selectedProj);
             });
 
             projectElement.appendChild(projectText);
-            projectElement.appendChild(projectDelete);
+
+            if (project.title !== "Default") {
+                projectElement.appendChild(projectDelete);
+            }
+
             projectContainer.appendChild(projectElement);
         });
     }
 
     function renderTasks(project) {
+        if (selectedProj === "") {
+            selectedProj = app.getProjects().find(({ title }) => title === "Default");
+        }
+
+        const taskHeader = document.querySelector(".taskHeader")
+        taskHeader.textContent = project.title;
+
         const taskContainer = document.querySelector(".tasks");
         taskContainer.innerHTML = "";
 
@@ -146,6 +157,12 @@ const DOM = (() => {
     const newTaskDialog = document.querySelector("#newTaskDialog");
 
     newTaskBtn.addEventListener("click", () => {
+        if (selectedProj === "") {
+            selectedProj = app.getProjects().find(({ title }) => title === "Default");
+        }
+        
+        console.log(selectedProj);
+
         newTaskDialog.showModal();
     });
 
@@ -203,7 +220,7 @@ const DOM = (() => {
     taskForm.addEventListener("submit", submitForm);
     updateForm.addEventListener("submit", submitUpdateForm);
 
-    return { renderProjects, renderUI };
+    return { renderProjects, renderTasks, renderUI };
 })();
 
 export default DOM;
