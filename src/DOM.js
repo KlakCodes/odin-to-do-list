@@ -13,6 +13,7 @@ const DOM = (() => {
             const projectElement = document.createElement("li");
             const projectText = document.createElement("div");
             const projectDelete = document.createElement("button");
+            projectDelete.classList.toggle("projectDelete");
 
             projectText.textContent = project.title;
             projectDelete.textContent = "Delete";
@@ -54,24 +55,31 @@ const DOM = (() => {
         project.tasks.forEach(task => {
             const taskElement = document.createElement("div");
             taskElement.classList.toggle("taskCard");
+            const taskPriorityInd = document.createElement("div");
+            taskPriorityInd.classList.toggle("taskPriInd");
 
-            let taskColor = "#fff"
+            let taskBorder = "#fff";
+            let taskColor = "#fff";
 
             switch (task.priority) {
                 case "High":
+                    taskBorder = "#bf0000";
                     taskColor = "#ff0000";
                     break;
                 case "Medium":
+                    taskBorder = "#bf7c00";
                     taskColor = "#ffa500";
                     break;
                 case "Low":
+                    taskBorder = "#bfbf00";
                     taskColor = "#ffff00";
                     break;
                 default:
                     taskColor = "#fff";
             }
 
-            taskElement.style.backgroundColor = taskColor;
+            taskPriorityInd.style.border = `2px solid ${taskBorder}`;
+            taskPriorityInd.style.backgroundColor = taskColor;
 
             const taskTitle = document.createElement("div");
             const taskDesc = document.createElement("div");
@@ -80,9 +88,16 @@ const DOM = (() => {
             const taskCompBtn = document.createElement("button");
             const taskDelete = document.createElement("button");
 
+            taskTitle.classList.toggle("taskTitle");
+            taskDesc.classList.toggle("taskDesc");
+            taskDueDate.classList.toggle("taskDueDate");
+            taskEdit.classList.toggle("taskEdit");
+            taskCompBtn.classList.toggle("taskCompBtn");
+            taskDelete.classList.toggle("taskDelete");
+
             taskTitle.textContent = task.title;
             taskDesc.textContent = task.description;
-            taskDueDate.textContent = task.dueDate;
+            taskDueDate.textContent = `Due date: ${task.dueDate}`;
             taskEdit.textContent = "Edit";
             taskDelete.textContent = "Delete";
 
@@ -123,6 +138,7 @@ const DOM = (() => {
             taskElement.appendChild(taskEdit);
             taskElement.appendChild(taskCompBtn);
             taskElement.appendChild(taskDelete);
+            taskElement.appendChild(taskPriorityInd);
 
             taskContainer.appendChild(taskElement);
 
