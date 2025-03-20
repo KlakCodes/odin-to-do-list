@@ -1,7 +1,5 @@
 {
   "scripts": {
-    "dev": "webpack serve --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
     "branch": "git checkout -b gh-pages && git merge main --no-edit",
     "prep": "git add dist -f && git commit -m 'Deployment commit'",
     "deploy": "git subtree push --prefix dist origin gh-pages"
