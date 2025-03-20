@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+<script defer src="main.js"></script></head>
+
+<body>
+    <div class="layout">
+        <div class="header">
+            To-Do List
+            <button id="newTaskBtn">New Task</button>
+        </div>
+        <div class="sidebar">
+            <input type="text" id="newProjectTxt" placeholder="New project name">
+            <button id="newProjectBtn"> Create New Project</button>
+            <ul class="projects"></ul>
+        </div>
+        <div class="taskHeader"></div>
+        <div class="tasks"></div>
+        <div class="footer"></div>
+
+        <dialog id="newTaskDialog">
+            <button id="closeNewDialog">X</button>
+            <form id="newTaskForm">
+                <div class="form-field">
+                    <label for="taskTitle">TITLE</label>
+                    <input type="text" id="taskTitle">
+                </div>
+                <div class="form-field">
+                    <label for="taskDesc">DESCRIPTION</label>
+                    <input type="text" id="taskDesc">
+                </div>
+                <div class="form-field">
+                    <label for="taskDueDate">DUE DATE</label>
+                    <input type="date" id="taskDueDate">
+                </div>
+                <div class="form-field">
+                    <label for="taskPriority">PRIORITY</label>
+                    <select id="taskPriority">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+                <button id="submitTaskBtn">Add task</button>
+            </form>
+        </dialog>
+
+        <dialog id="updateTaskDialog">
+            <button id="closeUpdateDialog">X</button>
+            <form id="updateTaskForm">
+                <div class="form-field">
+                    <label for="updateTitle">TITLE</label>
+                    <input type="text" id="updateTitle">
+                </div>
+                <div class="form-field">
+                    <label for="updateDesc">DESCRIPTION</label>
+                    <input type="text" id="updateDesc">
+                </div>
+                <div class="form-field">
+                    <label for="updateDueDate">DUE DATE</label>
+                    <input type="date" id="updateDueDate">
+                </div>
+                <div class="form-field">
+                    <label for="updatePriority">PRIORITY</label>
+                    <select id="updatePriority">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+
+                <button id="updateTaskBtn">Update task</button>
+            </form>
+        </dialog>
+    </div>
+</body>
+
+</html>
