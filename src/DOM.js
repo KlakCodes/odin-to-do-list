@@ -1,4 +1,5 @@
 import app from "./app";
+import { format } from "date-fns";
 
 const DOM = (() => {
     let selectedProj = "";
@@ -97,7 +98,7 @@ const DOM = (() => {
 
             taskTitle.textContent = task.title;
             taskDesc.textContent = task.description;
-            taskDueDate.textContent = `Due date: ${task.dueDate}`;
+            taskDueDate.textContent = `Due date: ${format(task.dueDate, 'PPP')}`;
             taskEdit.textContent = "Edit";
             taskDelete.textContent = "Delete";
 
