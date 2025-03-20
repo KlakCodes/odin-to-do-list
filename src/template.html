@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
 </head>
+
 <body>
     <div class="layout">
         <div class="header">
@@ -21,48 +23,60 @@
         <div class="footer"></div>
 
         <dialog id="newTaskDialog">
-            <button id="closeNewDialog">Close</button>
+            <button id="closeNewDialog">X</button>
             <form id="newTaskForm">
-                <label for="taskTitle">Title</label>
-                <input type="text" id="taskTitle">
-
-                <label for="taskDesc">Description</label>
-                <input type="text" id="taskDesc">
-
-                <label for="taskDueDate">Due Date</label>
-                <input type="date" id="taskDueDate">
-
-                <label for="taskPriority">Priority</label>
-                <select id="taskPriority">
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                </select>
+                <div class="form-field">
+                    <label for="taskTitle">TITLE</label>
+                    <input type="text" id="taskTitle">
+                </div>
+                <div class="form-field">
+                    <label for="taskDesc">DESCRIPTION</label>
+                    <input type="text" id="taskDesc">
+                </div>
+                <div class="form-field">
+                    <label for="taskDueDate">DUE DATE</label>
+                    <input type="date" id="taskDueDate">
+                </div>
+                <div class="form-field">
+                    <label for="taskPriority">PRIORITY</label>
+                    <select id="taskPriority">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
                 <button id="submitTaskBtn">Add task</button>
             </form>
         </dialog>
 
         <dialog id="updateTaskDialog">
-            <button id="closeUpdateDialog">Close</button>
+            <button id="closeUpdateDialog">X</button>
             <form id="updateTaskForm">
-                <label for="updateTitle">Title</label>
-                <input type="text" id="updateTitle">
+                <div class="form-field">
+                    <label for="updateTitle">TITLE</label>
+                    <input type="text" id="updateTitle">
+                </div>
+                <div class="form-field">
+                    <label for="updateDesc">DESCRIPTION</label>
+                    <input type="text" id="updateDesc">
+                </div>
+                <div class="form-field">
+                    <label for="updateDueDate">DUE DATE</label>
+                    <input type="date" id="updateDueDate">
+                </div>
+                <div class="form-field">
+                    <label for="updatePriority">PRIORITY</label>
+                    <select id="updatePriority">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
 
-                <label for="updateDesc">Description</label>
-                <input type="text" id="updateDesc">
-
-                <label for="updateDueDate">Due Date</label>
-                <input type="date" id="updateDueDate">
-
-                <label for="updatePriority">Priority</label>
-                <select id="updatePriority">
-                    <option value="Low">Low</option>
-                    <option value="Medium">Medium</option>
-                    <option value="High">High</option>
-                </select>
                 <button id="updateTaskBtn">Update task</button>
             </form>
         </dialog>
     </div>
 </body>
+
 </html>
